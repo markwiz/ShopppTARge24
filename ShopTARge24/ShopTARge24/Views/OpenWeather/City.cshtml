@@ -1,0 +1,19 @@
+﻿@model ShopTARge24.Models.OpenWeather.OpenWeatherCityViewModel
+@{
+    ViewData["Title"] = "City";
+}
+
+<div class="container mt-4">
+    <h1>City</h1>
+    <h3 class="mb-4">Forecast for the selected city</h3>
+
+    <p><strong>City:</strong>  <span class="ms-2">@Model.City</span></p>
+    <p><strong>Temperature:</strong>  <span class="ms-2">@Model.TemperatureC.ToString("0.##") °C</span></p>
+    <p><strong>Temp Feels like:</strong>  <span class="ms-2">@Model.FeelsLikeC.ToString("0.##") °C</span></p>
+    <p><strong>Humidity</strong>  <span class="ms-2">@Model.HumidityPct %</span></p>
+    <p><strong>Pressure:</strong>  <span class="ms-2">@Model.PressureHpa Hpa</span></p>
+    <p><strong>Wind Speed:</strong>  <span class="ms-2">@Model.WindKmh.ToString("0.##") Km/h</span></p>
+    <p><strong>Weather Condition:</strong> <span class="ms-2">@Model.Condition</span></p>
+
+    <a asp-action="Index" class="btn btn-success mt-3">Return</a>
+</div>

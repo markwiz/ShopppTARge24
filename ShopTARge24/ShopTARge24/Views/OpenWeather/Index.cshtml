@@ -1,0 +1,22 @@
+﻿@model ShopTARge24.Models.OpenWeather.OpenWeatherSearchViewModel
+@{
+    ViewData["Title"] = "OpenWeather";
+}
+
+<div class="container mt-4">
+    <h2>OpenWeather</h2>
+    <form asp-action="City" method="post" class="row gy-2 gx-2">
+        <div class="col-auto">
+            <input asp-for="City" class="form-control" placeholder="Enter city e.g. Tallinn" />
+            <span asp-validation-for="City" class="text-danger"></span>
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary">Get Forecast</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+

@@ -1,0 +1,50 @@
+﻿@model ShopTARge24.Models.Cocktails.CocktailSearchViewModel
+@{
+    ViewData["Title"] = "Cocktails";
+}
+
+<div class="container mt-4">
+    <h2>Cocktails</h2>
+
+    <form method="get" asp-action="Index" class="mb-3">
+        <div class="input-group">
+            <input name="query" value="@Model.Query" class="form-control" placeholder="Search e.g. margarita, mojito" />
+            <button class="btn btn-primary" type="submit">Search</button>
+            <a asp-action="Index" class="btn btn-outline-secondary">Reset</a>
+        </div>
+    </form>
+
+    @if (Model.Random is not null)
+    {
+        <div class="alert alert-light border mb-4">
+            <div class="d-flex align-items-center">
+                <img src="@Model.Random.ThumbUrl" alt="random" width="64" class="me-3 rounded" />
+                <div>
+                    <strong>Random pick:</strong> <a asp-action="Details" asp-route-id="@Model.Random.Id">@Model.Random.Name</a>
+                    <div class="text-muted">@Model.Random.Category – @Model.Random.Alcoholic</div>
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (Model.Results.Count == 0 && !string.IsNullOrWhiteSpace(Model.Query))
+    {
+        <div class="alert alert-warning">No cocktails found for “@Model.Query”.</div>
+    }
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        @foreach (var c in Model.Results)
+        {
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="@c.ThumbUrl" class="card-img-top" alt="@c.Name" />
+                    <div class="card-body">
+                        <h5 class="card-title">@c.Name</h5>
+                        <p class="card-text text-muted">@c.Category · @c.Alcoholic</p>
+                        <a class="btn btn-sm btn-primary" asp-action="Details" asp-route-id="@c.Id">Details</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
